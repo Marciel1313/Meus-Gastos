@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Contas da Casa</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14212b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Contas">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#f3f5f7;--cd:#fff;--ink:#14212b;--mt:#66727d;--ln:#dfe4e8;--g:#1b8a5a;--r:#c8423a;--a:#b7791f;--on:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f161c;--cd:#18222b;--ink:#e8edf1;--mt:#93a0ab;--ln:#2a3641;--g:#4cc38a;--r:#ff7a70;--a:#e0a84b;--on:#0f161c;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0f161c;--cd:#18222b;--ink:#e8edf1;--mt:#93a0ab;--ln:#2a3641;--g:#4cc38a;--r:#ff7a70;--a:#e0a84b;--on:#0f161c;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-variant-numeric:tabular-nums}
+#app{max-width:520px;margin:auto;height:100%;display:flex;flex-direction:column;position:relative}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+header b{font-size:20px}
+header button{background:var(--cd);border:1px solid var(--ln);color:var(--ink);width:40px;height:40px;border-radius:12px;font-size:18px}
+header #ml{width:auto;height:auto;padding:6px 16px;font-size:19px;font-weight:700}
+#hj{font-size:12px;margin-top:2px}
+#main{flex:1;overflow:auto;padding:0 16px 90px}
+.hero{padding:8px 0 16px}
+.lb{color:var(--mt);font-size:13px}
+.big{font-size:42px;font-weight:800;letter-spacing:-1px}
+.pos{color:var(--g)}.neg{color:var(--r)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.cd{background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.g2 .cd{margin:0}
+.cd b{font-size:20px;display:block}
+.mt{color:var(--mt);font-size:13px}
+h3{margin:18px 0 8px;font-size:15px}
+.rw{display:flex;align-items:center;gap:10px;background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.rl{flex:1;min-width:0}.rl b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rv{font-weight:700}
+.x{background:none;border:0;color:var(--mt);font-size:16px;padding:6px}
+.pg{border:1px solid var(--a);color:var(--a);background:none;border-radius:20px;padding:6px 12px;font-weight:600}
+.pg.on{background:var(--g);border-color:var(--g);color:var(--on)}
+.late{color:var(--r)}
+nav{display:flex;background:var(--cd);border-top:1px solid var(--ln)}
+nav button{flex:1;background:none;border:0;padding:8px 4px 10px;color:var(--mt);font-weight:600}
+nav .ic{display:block;font-size:26px;line-height:1.15}
+nav .tx{font-size:12px}
+nav .on{color:var(--ink);box-shadow:inset 0 3px 0 var(--g)}
+#fab{position:absolute;right:16px;bottom:76px;width:56px;height:56px;border-radius:18px;border:0;background:var(--g);color:var(--on);font-size:30px;display:none}
+.bt{background:var(--ink);color:var(--bg);border:0;border-radius:12px;padding:13px;width:100%;font-weight:700;margin-top:10px;font-size:16px}
+.bt.o{background:none;color:var(--ink);border:1px solid var(--ln)}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);margin-top:8px;font:inherit}
+.ck{display:flex;gap:8px;align-items:center;margin-top:12px}.ck input{width:auto;margin:0}
+#md{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:flex-end;justify-content:center;z-index:5}
+#md.on{display:flex}
+.sh{background:var(--cd);width:100%;max-width:520px;border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));max-height:92%;overflow:auto}
+.sh h3{margin-top:0}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:800px){
+#app{max-width:860px}
+header{order:0}
+nav{order:1;border:1px solid var(--ln);border-radius:14px;margin:0 16px 12px;overflow:hidden}
+nav button{padding:10px;display:flex;gap:8px;align-items:center;justify-content:center}
+nav .ic{display:inline;font-size:20px}
+nav .tx{font-size:14px}
+nav .on{box-shadow:inset 0 -3px 0 var(--g)}
+#main{order:2;padding-bottom:40px}
+#fab{bottom:24px}
+.ls{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+}
+#toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:20px;font-size:14px;display:none;z-index:9;max-width:90%}
+</style>
+</head>
+<body>
+<div id="app">
+<header><button data-a="pv" aria-label="Mês anterior">‹</button><div style="text-align:center"><button id="ml" data-a="gm" aria-label="Escolher mês"></button><div class="mt" id="hj"></div></div><button data-a="nx" aria-label="Próximo mês">›</button></header>
+<div id="main"></div>
+<button id="fab" data-a="fm" aria-label="Adicionar">+</button>
+<nav>
+<button class="nv" data-a="tab" data-t="res"><span class="ic">📊</span><span class="tx">Resumo</span></button>
+<button class="nv" data-a="tab" data-t="con"><span class="ic">🧾</span><span class="tx">Contas</span></button>
+<button class="nv" data-a="tab" data-t="gas"><span class="ic">🛒</span><span class="tx">Gastos</span></button>
+<button class="nv" data-a="tab" data-t="ent"><span class="ic">💰</span><span class="tx">Entradas</span></button>
+</nav>
+</div>
+<div id="md"></div>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const BRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+const brl=v=>BRL.format(v);
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const fd=s=>s.slice(8)+'/'+s.slice(5,7);
+const MN=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+let D;try{D=JSON.parse(localStorage.getItem('casa'))}catch(e){}
+D=D&&Array.isArray(D.items)?D:{items:[]};
+const save=()=>{try{localStorage.setItem('casa',JSON.stringify(D))}catch(e){}};
+let ym=iso(new Date()).slice(0,7),tab='res',F=null;
+const KIND={con:'bill',gas:'gasto',ent:'in'};
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3500)}
+function num(s){s=String(s).trim();if(!s)return NaN;if(s.includes(','))return parseFloat(s.replace(/\./g,'').replace(',','.'));if(/^\d{1,3}(\.\d{3})+$/.test(s))return parseFloat(s.replace(/\./g,''));return parseFloat(s)}
+const sum=L=>L.reduce((a,x)=>a+x.v,0);
+const mi=()=>D.items.filter(x=>x.dt.slice(0,7)==ym);
+
+function tot(){const L=mi(),e=sum(L.filter(x=>x.k=='in')),g=sum(L.filter(x=>x.k=='gasto')),cp=sum(L.filter(x=>x.k=='bill'&&x.paid)),ap=sum(L.filter(x=>x.k=='bill'&&!x.paid));
+return{e,g,cp,ap,s:g+cp,sobra:e-g-cp,L}}
+
+function resumo(){const t=tot(),mk=sum(t.L.filter(x=>x.k=='gasto'&&x.c=='Supermercado')),ou=t.g-mk;
+return `<div class="hero"><div class="lb">Sobra do mês</div><div class="big ${t.sobra<0?'neg':'pos'}">${brl(t.sobra)}</div></div>
+<div class="g2"><div class="cd"><div class="lb">Entrada total</div><b class="pos">${brl(t.e)}</b></div><div class="cd"><div class="lb">Saída total</div><b class="neg">${brl(t.s)}</b></div></div>
+<div class="cd"><div class="lb">Ainda a pagar neste mês</div><b>${brl(t.ap)}</b><div class="mt">Pagando tudo, a sobra fica em ${brl(t.sobra-t.ap)}</div></div>
+<h3>Para onde foi o dinheiro</h3>
+<div class="rw"><div class="rl">Contas pagas</div><div class="rv">${brl(t.cp)}</div></div>
+<div class="rw"><div class="rl">Supermercado</div><div class="rv">${brl(mk)}</div></div>
+<div class="rw"><div class="rl">Outros gastos</div><div class="rv">${brl(ou)}</div></div>
+<button class="bt o" data-a="bk" style="margin-top:20px">Backup dos dados</button>`}
+
+function lista(){const k=KIND[tab],today=iso(new Date());
+const L=mi().filter(x=>x.k==k).sort((a,b)=>k=='bill'?a.dt.localeCompare(b.dt):b.dt.localeCompare(a.dt));
+const tt=k=='bill'?`<div class="mt" style="margin-bottom:10px">Total do mês: <b>${brl(sum(L))}</b> • A pagar: <b>${brl(sum(L.filter(x=>!x.paid)))}</b></div>`:`<div class="mt" style="margin-bottom:10px">Total do mês: <b>${brl(sum(L))}</b></div>`;
+return tt+'<div class="ls">'+(L.map(x=>{const late=k=='bill'&&!x.paid&&x.dt<today;
+const meta=k=='bill'?(x.paid?`Pago • venc. ${fd(x.dt)}`:late?`<span class="late">Vencida em ${fd(x.dt)}</span>`:`Vence ${fd(x.dt)}`):`${fd(x.dt)} • ${esc(x.c)}`;
+return `<div class="rw"><div class="rl"><b>${esc(x.d)}</b><div class="mt">${meta}</div></div><div class="rv">${brl(x.v)}</div>${k=='bill'?`<button class="pg ${x.paid?'on':''}" data-a="pay" data-i="${x.id}">${x.paid?'Pago':'Pagar'}</button>`:''}<button class="x" data-a="del" data-i="${x.id}" aria-label="Apagar">✕</button></div>`}).join('')||'<p class="mt" style="text-align:center;margin-top:40px">Nada aqui ainda.<br>Toque em + para adicionar.</p>')+'</div>'}
+
+function render(){const[y,m]=ym.split('-');$('#ml').textContent=MN[m-1]+' '+y+' ▾';const hd=iso(new Date());$('#hj').textContent='Hoje: '+hd.slice(8)+'/'+hd.slice(5,7)+'/'+hd.slice(0,4);
+$('#main').innerHTML=tab=='res'?resumo():lista();
+document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.t==tab));
+$('#fab').style.display=tab=='res'?'none':'block'}
+
+function boleto(s){s=s.replace(/\D/g,'');let f,val;
+if(s.length==47){f=s.slice(33,37);val=s.slice(37,47)}
+else if(s.length==44&&s[0]!='8'){f=s.slice(5,9);val=s.slice(9,19)}
+else if((s.length==48||s.length==44)&&s[0]=='8'){const b=s.length==48?[0,12,24,36].map(i=>s.slice(i,i+11)).join(''):s;
+return '67'.includes(b[2])?{v:+b.slice(4,15)/100,dt:'',conc:1}:null}
+else return null;
+let dt='';f=+f;if(f>0){const a=new Date(1997,9,7+f),b=new Date(2025,1,22+f-1000),n=Date.now();dt=iso(Math.abs(a-n)<Math.abs(b-n)?a:b)}
+return{v:+val/100,dt}}
+
+function openForm(){const k=KIND[tab];F=k;const today=iso(new Date()),dd=today;
+const cats=k=='gasto'?['Supermercado','Outros']:['Salário','Outros'];
+$('#md').innerHTML=`<div class="sh"><h3>${{bill:'Nova conta a pagar',gasto:'Novo gasto',in:'Nova entrada'}[k]}</h3>
+${k=='bill'?`<input id="cb" inputmode="numeric" placeholder="Código do boleto (opcional)"><button class="bt o" data-a="rd" style="margin-top:8px">Ler código e preencher</button>`:''}
+<input id="fn" placeholder="${k=='bill'?'Nome (ex: Luz, Internet)':k=='gasto'?'Descrição (ex: Mercado do bairro)':'Descrição (ex: Salário)'}">
+<input id="fv" inputmode="decimal" autocomplete="off" placeholder="Valor (ex: 150,90)">
+<div class="mt" style="margin-top:10px">${k=='bill'?'Vencimento':'Data'}</div><input id="fd" type="date" value="${dd}" style="margin-top:4px">
+${k=='bill'?`<label class="ck"><input type="checkbox" id="fp">Já está paga</label>`:`<select id="fc">${cats.map(c=>`<option>${c}</option>`).join('')}</select>`}
+<div class="r2"><button class="bt o" data-a="cm">Cancelar</button><button class="bt" data-a="sv">Salvar</button></div></div>`;
+$('#md').className='on'}
+
+const A={
+pv:()=>{const[y,m]=ym.split('-').map(Number);ym=iso(new Date(y,m-2,1)).slice(0,7);render()},
+nx:()=>{const[y,m]=ym.split('-').map(Number);ym=iso(new Date(y,m,1)).slice(0,7);render()},
+tab:d=>{tab=d.t;render()},
+fm:openForm,
+gm:()=>{const[y,m]=ym.split('-').map(Number),cy=new Date().getFullYear();let ys='';for(let i=Math.min(cy-10,y);i<=Math.max(cy+5,y);i++)ys+=`<option ${i==y?'selected':''}>${i}</option>`;
+$('#md').innerHTML=`<div class="sh"><h3>Ir para o mês</h3><div class="r2"><select id="gm_m">${MN.map((n,i)=>`<option value="${i+1}" ${i+1==m?'selected':''}>${n}</option>`).join('')}</select><select id="gm_y">${ys}</select></div><div class="r2"><button class="bt o" data-a="hj">Mês atual</button><button class="bt" data-a="go">Ir</button></div></div>`;$('#md').className='on'},
+go:()=>{ym=$('#gm_y').value+'-'+String($('#gm_m').value).padStart(2,'0');A.cm();render()},
+hj:()=>{ym=iso(new Date()).slice(0,7);A.cm();render()},
+cm:()=>{$('#md').className=''},
+rd:()=>{const r=boleto($('#cb').value);
+if(!r)return toast('Código não reconhecido. Use a linha digitável (47 ou 48 números) ou o código de barras (44).');
+$('#fv').value=r.v.toFixed(2).replace('.',',');if(r.dt)$('#fd').value=r.dt;
+toast(r.conc?'Valor lido: '+brl(r.v)+'. Contas de água, luz e gás não trazem o vencimento certo: confira a data.':'Lido: '+brl(r.v)+(r.dt?' • vence '+fd(r.dt):'')+'. Confira antes de salvar.')},
+sv:()=>{const v=num($('#fv').value),n=$('#fn').value.trim(),dt=$('#fd').value;
+if(!n||!(v>=0)||!dt)return toast('Preencha nome, valor e data.');
+D.items.push({id:Date.now()+Math.random().toString(36).slice(2,5),k:F,d:n,v,dt,paid:F=='bill'&&$('#fp').checked?1:0,c:F=='bill'?'':$('#fc').value,ts:iso(new Date())+' '+new Date().toTimeString().slice(0,5)});
+save();ym=dt.slice(0,7);A.cm();render()},
+pay:d=>{const x=D.items.find(i=>i.id==d.i);if(x){x.paid=x.paid?0:1;save();render()}},
+del:d=>{if(confirm('Apagar este item?')){D.items=D.items.filter(i=>i.id!=d.i);save();render()}},
+bk:()=>{$('#md').innerHTML=`<div class="sh"><h3>Backup dos dados</h3><p class="mt">Copie este texto e guarde em um lugar seguro, como uma mensagem para você mesmo. Para restaurar, cole um backup aqui e toque em Restaurar.</p><textarea id="bx" rows="6">${esc(JSON.stringify(D))}</textarea><div class="r2"><button class="bt o" data-a="cm">Fechar</button><button class="bt" data-a="rs">Restaurar</button></div></div>`;$('#md').className='on'},
+rs:()=>{try{const o=JSON.parse($('#bx').value);if(!Array.isArray(o.items))throw 0;D=o;save();A.cm();render();toast('Dados restaurados.')}catch(e){toast('Backup inválido.')}}
+};
+document.addEventListener('click',e=>{if(e.target.id=='md'){A.cm();return}const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a])A[t.dataset.a](t.dataset)});
+render();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{try{navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}})}
+</script>
+</body>
+</html>

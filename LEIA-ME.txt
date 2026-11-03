@@ -1,0 +1,20 @@
+CONTAS DA CASA - APLICATIVO INSTALAVEL (funciona offline)
+
+ESTA PASTA CONTEM:
+ index.html .............. o aplicativo
+ manifest.webmanifest .... nome e icone do aplicativo (carteira)
+ sw.js ................... deixa o aplicativo funcionar sem internet
+ icon-192.png, icon-512.png, icon-maskable-512.png ... icones
+
+COMO USAR NO CELULAR:
+1) Coloque ESTA PASTA INTEIRA em uma hospedagem de sites gratuita que de um endereco https://
+   (exemplos: Netlify, Cloudflare Pages, GitHub Pages). Confira no site escolhido como enviar uma pasta.
+2) Abra o endereco https:// que a hospedagem te der, no CHROME do Android.
+3) Toque nos 3 pontinhos e escolha "Instalar app" ou "Adicionar a tela inicial".
+4) Pronto: o icone da carteira aparece e o aplicativo abre em tela cheia.
+
+IMPORTANTE:
+ - So funciona por endereco https://. Abrindo o index.html direto do celular, nao instala.
+ - Os dados ficam guardados no celular, no navegador. Faca o "Backup dos dados" de vez em quando.
+ - Para atualizar o app no futuro, troque a pasta na hospedagem e mude CACHE="contas-casa-v1" em sw.js
+   para "contas-casa-v2" (senao o celular continua usando a versao antiga).
